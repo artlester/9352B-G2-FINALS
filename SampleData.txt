@@ -1,0 +1,102 @@
+REGISTRATIONS
+Sample 1
+reg_id: 425127
+username: jeanedomaoa
+password: jeanedomaoa123
+last_name: domaoa
+first_name: jeane
+gender: male
+email: jeanedomaoa@gmail.com
+contact_number: 09123456789
+account_type: Service Provider
+
+Sample 2
+reg_id: 823490
+username: gavinferrer
+password: gavinferrer123
+last_name: ferrer
+first_name: gavin
+gender: male
+email: gavinferrer@gmail.com
+contact_number: 09234567891
+account_type: Customer
+
+Sample 3
+reg_id: 058957
+username: lestermarquez
+password: lestermarquez123
+last_name: marquez
+first_name: lester
+gender: male
+email: lestermarquez@gmail.com
+contact_number: 09345678912
+account_type: Service Provider
+
+
+SERVICE PROVIDER
+//Mapped to Registrations
+vendor_id: 882726
+ven_username: jeanedomaoa
+ven_password: jeanedomaoa123
+ven_last_name: domaoa
+ven_first_name: jeane
+ven_gender: male
+ven_email: jeanedomaoa@gmail.com
+ven_contact_number: 09123456789
+
+vendor_id: 882726
+ven_username: lestermarquez
+ven_password: lestermarquez123
+ven_last_name: marquez
+ven_first_name: jeane
+ven_gender: male
+ven_email: lestermarquez@gmail.com
+ven_contact_number: 09345678912
+
+
+
+
+CUSTOMER
+//Mapped to Registrations
+customer_id: 823475
+cust_username: gavinferrer
+cust_password: gavinferrer123
+cust_last_name: ferrer
+cust_first_name: gavin
+cust_gender: male
+cust_email: gavinferrer@gmail.com
+cust_contact_number: 09234567891
+
+
+
+SOUND EQUIPMENT
+//Mapped to Service Provider
+vendor_id: 882726
+name:
+description:
+duration
+price:
+replacement_cost:
+
+
+
+
+
+
+RENTALS
+//Mapped to CUSTOMERS && Sevice Provider
+rental_id:
+rental
+
+
+
+
+
+
+
+
+
+
+
+
+
