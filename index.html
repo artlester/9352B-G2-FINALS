@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Server-Side Web Scripting: Node.js</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Node.js</h1>
+    <h2>Handling HTTP Requests</h2>
+    <hr>
+
+    <h2>Simple GET Request</h2>
+    <p><a href="http://localhost:8001" target="_blank">Link</a></p>
+    <hr>
+
+    <h2>GET Request with Form Data</h2>
+    <form action="http://localhost:8001" method="GET" target="_blank">
+        <p>Username:<br><input type="text" name="username"></p>
+        <p>Password:<br><input type="text" name="password"></p>
+        <p><input type="submit"></p>
+    </form>
+    <hr>
+
+    <h2>POST Request with Form Data</h2>
+    <form action="http://localhost:8001" method="POST" target="_blank">
+        <p>Username:<br><input type="text" name="username"></p>
+        <p>Password:<br><input type="text" name="password"></p>
+        <p><input type="submit"></p>
+    </form>
+    <hr>
+
+    <h2>POST Request with Multipart Form Data</h2>
+    <form action="http://localhost:8001" method="POST" enctype="multipart/form-data" target="_blank">
+        <p>Username:<br><input type="text" name="username"></p>
+        <p>Attachment 1: <input type="file" name="file1"></p>
+        <p>Attachment 2: <input type="file" name="file2"></p>
+        <p><input type="submit"></p>
+    </form>
+</body>
+</html>
