@@ -1,0 +1,47 @@
+@font-face {
+    font-family: "The Bully";
+    src: url('http://customer.audirentur.com/fonts/thebully.ttf');
+}
+body {
+	width: 100wh;
+	height: 100vh;
+	color: #fff;
+	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 1000% 1000%;
+    animation: Gradient 32s ease infinite;
+}
+@keyframes Gradient {
+	0% {background-position: 0% 50%}
+	50% {background-position: 100% 50%}
+	100% {background-position: 0% 50%}
+}
+h1 {
+    font-family: "The Bully";
+    font-size: 150px;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+	text-align: center;
+	color: white;
+	background-color: black;
+	opacity: .9;
+	font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+.container > h1 {
+    text-align: center;
+}
+@media (max-width: 620px) {
+    h1{
+        font-size: 100px;
+    }
+}
+@media (max-width: 350px) {
+    h1{
+        font-size: 72.5px;
+    }
+}

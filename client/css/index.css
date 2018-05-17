@@ -1,0 +1,104 @@
+@font-face {
+    font-family: "The Bully";
+    src: url('../fonts/thebully.ttf');
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Century Gothic';
+}
+.bg-black {
+    background-color: black;
+}
+.bg-black-translucent {
+    background-color: rgba(0, 0, 0, 0.750);
+}
+a#login{
+    font-size: 16px;
+    color:white;
+    transition: .3s;
+}
+a#login:hover {
+    color: grey;
+}
+div.heading {
+    height: 50vh;
+    background-image: url(../img/heading.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+h1#logo {
+    font-family: "The Bully";
+    font-size: 160px;
+}
+div.container {
+    color: white;
+}
+span#or {
+    font-size: 20px;
+}
+a#login-link {
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    text-decoration: none;
+    transition: .3s ease;
+    margin: 5px;
+}
+a#login-link:hover {
+    color: grey;
+}
+div#inside h2{
+    font-size: 40px;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+	text-align: center;
+	color: white;
+	background-color: black;
+	opacity: .9;
+	font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+img#feature-img {
+    width: 150px;
+    height: auto;
+}
+@media (max-width: 620px) {
+    h1#logo {
+        font-size: 100px;
+    }
+    div.heading {
+        height: 320px;
+    }
+    a#login-link {
+        font-size: 16.5px;
+    }
+    div.heading h3{
+        font-size: 20px;
+    }
+    div#inside h2{
+        font-size: 36px;
+    }
+    div#login-links h5 {
+        font-size: 18px;
+    }
+    span#or {
+        font-size: 14px;
+    }
+}
+@media (max-width: 350px) {
+    h1#logo {
+        font-size: 60px;
+    }
+    a#login-link {
+        font-size: 12px;
+    }
+    div#inside h2{
+        font-size: 32px;
+    }
+}
