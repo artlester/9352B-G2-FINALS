@@ -1,0 +1,26 @@
+nav.bg-black#bg-black, div.bg-black#bg-black {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+a.dropdown-item#drop-down {
+    color: black;
+}
+a.dropdown-item#drop-down:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+div.bg-light-transparent#profile {
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 94vh;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+	text-align: center;
+	color: white;
+	background-color: black;
+	opacity: .9;
+	font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
