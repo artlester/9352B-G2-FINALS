@@ -1,29 +1,37 @@
 <?php
-/* User login process, checks if user exists and password is correct */
+        require('db.php');
+        if(isset($_POST['login'])) {
+        $username = $_POST['user'];
+        $password = $_POST['pass'];
+      
+        $query = "SELECT * FROM customers WHERE cust_username='$username' AND cust_password='$password' AND acc_status='Accepted'";
+        $pend = "SELECT * FROM customers WHERE cust_username='$username' AND cust_password='$password' AND acc_status='Pending'";
+        $deny = "SELECT * FROM customers WHERE cust_username='$username' AND cust_password='$password' AND acc_status='Denied'";
+        $ban = "SELECT * FROM customers WHERE cust_username='$username' AND cust_password='$password' AND acc_status='Declined'";
+      
+        $result = mysqli_query($mysqli, $query) or die(mysqli_error($mysqli));
+        $count = mysqli_num_rows($result);
 
-$username = $mysqli->escape_string($_POST['user']);
-$result = $mysqli->query("SELECT * FROM customers WHERE cust_username='$username'");
+        $deny_result = mysqli_query($mysqli, $deny) or die(mysqli_error($mysqli));
+        $deny_count = mysqli_num_rows($deny_result);
 
-if ( $result->num_rows == 0 ){ // User doesn't exist
-    echo '<script>alert("User Does Not Exist!");<script/>';
-    header("location: index.php");
-}
-else { // User exists
-    $user = $result->fetch_assoc();
+        $pen_result = mysqli_query($mysqli, $pend) or die(mysqli_error($mysqli));
+        $pen_count = mysqli_num_rows($pen_result);
 
-    if ( password_verify($_POST['pass'], $user['cust_password']) ) {
-        
-        $_SESSION['username'] = $user['cust_username'];
-        $_SESSION['first_name'] = $user['cust_first_name'];
-        $_SESSION['last_name'] = $user['cust_last_name'];
-    
-        // This is how we'll know the user is logged in
-        $_SESSION['logged_in'] = true;
-
-        header("location: profile.php");
-    }
-    else {
-        echo '<script>alert("You have entered a wrong password!");<script/>';
-    }
-}
-
+        $ban_result = mysqli_query($mysqli, $ban) or die(mysqli_error($mysqli));
+        $ban_count = mysqli_num_rows($ban_result);
+      
+        if($count == 1) {
+          $_SESSION['username'] = $username;
+          header("location: http://customer.audirentur.com/homepage.html");
+          exit;
+        }elseif($pen_count == 1) {
+            echo '<script>alert("Your account is still in evaluation! Please contact admin.");</script>';
+        }elseif($deny_count == 1) {
+            echo '<script>alert("Your account has been declined! Please contact admin.");</script>';
+        } elseif($ban_count == 1) {
+            echo '<script>alert("Your account has been dismissed! Please contact admin.");</script>';
+        }else {
+            echo '<script>alert("Username or password is incorrect! Please try again.");</script>';
+        }
+      }

@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "The Bully";
+    src: url('http://customer.audirentur.com/fonts/thebully.ttf');
+}
+html, body {
+    margin: 0;
+    padding: 0;
+}
+nav.bg-black#bg-black, div.bg-black#bg-black {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+a.dropdown-item#drop-down {
+    color: black;
+}
+a.dropdown-item#drop-down:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+div.welcome#welcome {
+    background-image: url('http://customer.audirentur.com/img/heading.jpeg');
+    width: 100vw;
+    height: 40vh;
+    background-position: center;
+}
+h1#logo {
+    font-family: "The Bully";
+    font-size: 160px;
+    color: white;
+}
+h3#logo {
+    color: white;
+    font-family: Candara;
+    font-size: 24px;
+}

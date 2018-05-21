@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if(isset($_SESSION['username'])) {
+    header("location: http://customer.audirentur.com/homepage.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,25 +34,7 @@ session_start();
             <button class="btn btn-lg btn-light btn-block" type="submit" name="login"><i class="fas fa-sign-in-alt"></i> Sign in</button>
         </form>
     </div>
-    <?php
-        require('db.php');
-        if(isset($_POST['login'])) {
-        $username = $_POST['user'];
-        $password = $_POST['pass'];
-      
-        $query = "SELECT * FROM customers WHERE cust_username='$username' && cust_password='$password'";
-      
-        $result = mysqli_query($mysqli, $query) or die(mysqli_error($mysqli));
-        $count = mysqli_num_rows($result);
-      
-        if($count == 1) {
-          $_SESSION['username'] = $username;
-          header("location: http://customer.audirentur.com/homepage.php");
-        }else {
-          echo '<script>alert("Either username or password is incorrect! Please try again.");</script>';
-        }
-      }
-    ?>
+    <?php include 'login.php' ?>
     <footer>
         <span>© Copyright 2018 Audirentur</span>
     </footer>
