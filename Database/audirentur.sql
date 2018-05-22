@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `transient_house` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `transient_house`;
+CREATE DATABASE  IF NOT EXISTS `audirentur` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `audirentur`;
 -- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
--- Host: localhost    Database: transient_house
+-- Host: localhost    Database: audirentur
 -- ------------------------------------------------------
 -- Server version	5.7.21
 
@@ -18,88 +18,217 @@ USE `transient_house`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `payment`
+-- Table structure for table `admins`
 --
 
-DROP TABLE IF EXISTS `payment`;
+DROP TABLE IF EXISTS `admins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `payment` (
-  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
-  `reservation_no` int(11) NOT NULL,
-  `payment_date` datetime NOT NULL,
-  `amount` int(11) NOT NULL,
-  PRIMARY KEY (`payment_id`),
-  KEY `fk_payment_reservation_idx` (`reservation_no`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE `admins` (
+  `admin_id` int(11) NOT NULL,
+  `admin_username` varchar(64) NOT NULL,
+  `admin_password` varchar(120) NOT NULL,
+  `admin_last_name` varchar(35) NOT NULL,
+  `admin_first_name` varchar(35) NOT NULL,
+  PRIMARY KEY (`admin_id`),
+  UNIQUE KEY `admin_id_UNIQUE` (`admin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `payment`
+-- Dumping data for table `admins`
 --
 
-LOCK TABLES `payment` WRITE;
-/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-INSERT INTO `payment` VALUES (1,2,'2018-01-27 18:12:37',1650),(2,1,'2018-02-14 04:30:00',600);
-/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
+LOCK TABLES `admins` WRITE;
+/*!40000 ALTER TABLE `admins` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `reservation`
+-- Table structure for table `categories`
 --
 
-DROP TABLE IF EXISTS `reservation`;
+DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `reservation` (
-  `reservation_no` int(11) NOT NULL AUTO_INCREMENT,
-  `applicant_name` varchar(45) NOT NULL,
-  `room_no` tinyint(2) NOT NULL,
-  `reserve_date` datetime NOT NULL,
-  `check_in` datetime NOT NULL,
-  `check_out` datetime NOT NULL,
-  `pay_status` enum('paid','unpaid') NOT NULL,
-  `no_of_lodgers` tinyint(2) NOT NULL,
-  `amount_payable` int(11) NOT NULL,
-  PRIMARY KEY (`reservation_no`),
-  KEY `fk_reservation_room1_idx` (`room_no`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE `categories` (
+  `category_id` int(11) NOT NULL,
+  `category` varchar(20) NOT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `reservation`
+-- Dumping data for table `categories`
 --
 
-LOCK TABLES `reservation` WRITE;
-/*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
-INSERT INTO `reservation` VALUES (1,'Jamie Lannister',13,'2018-01-27 09:42:37','2018-02-14 05:00:00','2018-02-15 04:30:00','paid',2,600),(2,'Lord Farquad',20,'2018-01-27 12:27:19','2018-02-01 12:00:00','2018-02-10 15:00:00','paid',1,1650);
-/*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `room`
+-- Table structure for table `categorysound`
 --
 
-DROP TABLE IF EXISTS `room`;
+DROP TABLE IF EXISTS `categorysound`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `room` (
-  `room_no` tinyint(2) NOT NULL,
-  `capacity` tinyint(2) NOT NULL,
-  `price` smallint(3) NOT NULL,
-  `room_status` enum('occupied','vacant','unavailable') NOT NULL,
-  PRIMARY KEY (`room_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `categorysound` (
+  `sound_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  PRIMARY KEY (`sound_id`,`category_id`),
+  KEY `fk_sounds_has_categories_categories1_idx` (`category_id`),
+  KEY `fk_sounds_has_categories_sounds1_idx` (`sound_id`),
+  CONSTRAINT `fk_sounds_has_categories_categories1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `fk_sounds_has_categories_sounds1` FOREIGN KEY (`sound_id`) REFERENCES `sounds` (`sound_id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `room`
+-- Dumping data for table `categorysound`
 --
 
-LOCK TABLES `room` WRITE;
-/*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (1,5,350,'vacant'),(2,5,350,'vacant'),(3,5,375,'vacant'),(4,5,380,'vacant'),(5,5,380,'vacant'),(6,10,620,'vacant'),(7,10,620,'vacant'),(8,10,650,'vacant'),(9,10,650,'vacant'),(10,10,675,'vacant'),(11,7,500,'vacant'),(12,7,500,'vacant'),(13,4,300,'vacant'),(14,4,300,'vacant'),(15,4,300,'vacant'),(16,2,200,'vacant'),(17,2,200,'vacant'),(18,2,220,'vacant'),(19,1,150,'vacant'),(20,1,150,'vacant');
-/*!40000 ALTER TABLE `room` ENABLE KEYS */;
+LOCK TABLES `categorysound` WRITE;
+/*!40000 ALTER TABLE `categorysound` DISABLE KEYS */;
+/*!40000 ALTER TABLE `categorysound` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customers`
+--
+
+DROP TABLE IF EXISTS `customers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customers` (
+  `customer_id` int(11) NOT NULL,
+  `cust_username` varchar(64) NOT NULL,
+  `cust_password` varchar(120) NOT NULL,
+  `cust_last_name` varchar(35) NOT NULL,
+  `cust_first_name` varchar(35) NOT NULL,
+  `cust_gender` enum('Male','Female') NOT NULL,
+  `cust_email` varchar(254) NOT NULL,
+  `cust_contact_number` varchar(15) NOT NULL,
+  `cust_avatar` longblob,
+  `cust_bio` varchar(125) DEFAULT NULL,
+  `cust_create_date` datetime NOT NULL,
+  `acc_status` enum('Pending','Accepted','Denied','Disabled') NOT NULL,
+  PRIMARY KEY (`customer_id`),
+  UNIQUE KEY `reg_id_UNIQUE` (`customer_id`),
+  UNIQUE KEY `username_UNIQUE` (`cust_username`),
+  UNIQUE KEY `email_UNIQUE` (`cust_email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customers`
+--
+
+LOCK TABLES `customers` WRITE;
+/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+INSERT INTO `customers` VALUES (1,'iJeane','Uglypish','Domaoa','Jeane','Male','jcarino@gmail.com','09179354463',NULL,NULL,'2018-01-01 03:00:00','Accepted'),(2,'iRoxanne','GoddessOfMoan','Catayao','Roxanne','Female','roxy@gmail.com','09784561256',NULL,NULL,'2018-01-01 03:01:59','Pending'),(3,'iTed','TedPintas','Ramos','Tatum','Male','tedramos@gmail.com','09875312545',NULL,NULL,'2018-01-02 04:00:00','Disabled'),(4,'iCarla','CarlaElipsy','Calines','Carla','Female','carlaxxx@ymail.com','09785467562',NULL,NULL,'2018-01-03 12:49:12','Denied');
+/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rentals`
+--
+
+DROP TABLE IF EXISTS `rentals`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `rentals` (
+  `rental_id` int(11) NOT NULL,
+  `rental_date` datetime NOT NULL,
+  `return_date` datetime DEFAULT NULL,
+  `customer_id` int(11) NOT NULL,
+  `vendor_id` int(11) NOT NULL,
+  `sound_id` int(11) NOT NULL,
+  `status` enum('Pending','Renting','Rented','Cancelled') NOT NULL,
+  PRIMARY KEY (`rental_id`),
+  UNIQUE KEY `rental_id_UNIQUE` (`rental_id`),
+  KEY `fk_rentals_customers_idx` (`customer_id`),
+  KEY `fk_rentals_vendors1_idx` (`vendor_id`),
+  KEY `fk_rentals_sounds1_idx` (`sound_id`),
+  CONSTRAINT `fk_rentals_customers` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `fk_rentals_sounds1` FOREIGN KEY (`sound_id`) REFERENCES `sounds` (`sound_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `fk_rentals_vendors1` FOREIGN KEY (`vendor_id`) REFERENCES `vendors` (`vendor_id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rentals`
+--
+
+LOCK TABLES `rentals` WRITE;
+/*!40000 ALTER TABLE `rentals` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rentals` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sounds`
+--
+
+DROP TABLE IF EXISTS `sounds`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sounds` (
+  `sound_id` int(11) NOT NULL,
+  `vendor_id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `description` text NOT NULL,
+  `duration` int(11) NOT NULL,
+  `price` double NOT NULL,
+  `rent_availability` datetime NOT NULL,
+  PRIMARY KEY (`sound_id`),
+  UNIQUE KEY `sound_id_UNIQUE` (`sound_id`),
+  KEY `fk_sounds_vendors1_idx` (`vendor_id`),
+  CONSTRAINT `fk_sounds_vendors1` FOREIGN KEY (`vendor_id`) REFERENCES `vendors` (`vendor_id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sounds`
+--
+
+LOCK TABLES `sounds` WRITE;
+/*!40000 ALTER TABLE `sounds` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sounds` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vendors`
+--
+
+DROP TABLE IF EXISTS `vendors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vendors` (
+  `vendor_id` int(11) NOT NULL,
+  `ven_username` varchar(64) NOT NULL,
+  `ven_password` varchar(120) NOT NULL,
+  `ven_last_name` varchar(35) NOT NULL,
+  `ven_first_name` varchar(35) NOT NULL,
+  `ven_gender` enum('Male','Female') NOT NULL,
+  `ven_email` varchar(254) NOT NULL,
+  `ven_contact_number` varchar(15) NOT NULL,
+  `ven_avatar` longblob,
+  `ven_bio` varchar(125) DEFAULT NULL,
+  `ven_create_date` datetime NOT NULL,
+  `acc_status` enum('Pending','Accepted','Denied','Disabled') NOT NULL,
+  PRIMARY KEY (`vendor_id`),
+  UNIQUE KEY `vendor_id_UNIQUE` (`vendor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vendors`
+--
+
+LOCK TABLES `vendors` WRITE;
+/*!40000 ALTER TABLE `vendors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vendors` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -111,4 +240,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-22 18:03:33
+-- Dump completed on 2018-05-22 13:56:20
