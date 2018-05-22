@@ -6,6 +6,9 @@ html, body {
     margin: 0;
     padding: 0;
 }
+body {
+    overflow-x:hidden;
+}
 nav.bg-black#bg-black, div.bg-black#bg-black {
     background-color: rgba(0, 0, 0, 0.9);
 }
@@ -31,4 +34,59 @@ h3#logo {
     color: white;
     font-family: Candara;
     font-size: 24px;
+}
+div.categories#categories {
+    width: 100vw;
+    height:54vh;
+    background-color: rgb(233, 233, 233);
+}
+div#two-div, div#one-div{
+    width: 50vw;
+}
+div.short-div {
+    height: 25vh;
+}
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.5%;
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+/*  GRID OF FIVE  */
+.span_1_of_5 {
+	width: 18.8%;
+}
+.span_1_of_5 a img {
+    width: 225px;
+    height: auto;
+    transition: .4s ease;
+}
+.span_1_of_5 a img:hover {
+    transform: scale(1.2);
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+	text-align: center;
+	color: white;
+	background-color: black;
+	opacity: .9;
+	font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
 }
