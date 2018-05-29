@@ -20,17 +20,17 @@
         <h1 id="logo">Audirentur</h1>
         <h3 id="logo">The online rental for sound systems at the best and most affordable price!</h3>
         <br><br>
-        <form>
-        <div class="container input-group">
+        <form action="search.php" method="POST">
+            <div class="container input-group">
+                
+                    <input class="form-control py-2" type="search" name="key" placeholder="Search for systems...">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
             
-                <input class="form-control py-2" type="search" placeholder="Search for systems...">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-        
-        </div>
+            </div>
         </form>
     </div>
     <div class="categories text-center" id="categories">
