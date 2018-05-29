@@ -1,11 +1,3 @@
-<html>
-	<body>
-	<head>
-		
-</head>
-<nav class="nav">
-	<h4>Transactions</h4>
-</nav>
 <?php
 	require('db.php');
 	require('session.php');
@@ -22,51 +14,29 @@
 				die('Could not display data: ' . mysql_error()); //display errors 
 	}
 ?> 
-<style>
-	table td {
-			transition: all .5s;
-		}
-		
-		/* Table */
-		.data-table {
-			margin-top:20px;
-			border-collapse: collapse;
-			font-size: 14px;
-			min-width: 537px;
-			text-align:center;
-		}
-
-		.data-table th, 
-		.data-table td {
-			border: 1px solid #e1edff;
-			padding: 7px 17px;
-		}
-		.data-table caption {
-			margin: 7px;
-		}
-
-		/* Table Header */
-		.data-table thead th {
-			background-color: #508abb;
-			color: #FFFFFF;
-			border-color: #6ea1cc !important;
-			text-transform: uppercase;
-		}
-
-		/* Table Body */
-		.data-table tbody td {
-			color: #353535;
-		}
-		.data-table tbody tr:nth-child(odd) td {
-			background-color: #f4fbff;
-		}
-		.data-table tbody tr:hover td {
-			background-color: #ffffa2;
-			border-color: #ffff0f;
-		}
-	</style>
-	<table class="data-table">
-			<thead>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Audirentur: Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="http://customer.audirentur.com/img/logo.png" />
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="http://customer.audirentur.com/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="http://customer.audirentur.com/css/fontawesome-all.css">
+    <link rel="stylesheet" type="text/css" href="http://customer.audirentur.com/css/products.css">
+    <link rel="stylesheet" type="text/css" href="http://customer.audirentur.com/css/userbar.css">
+</head>
+<body>
+	<?php include 'userbar.php' ?>
+	<div id="grad-bg">
+	<br>
+	<h3 class="text-center">Transactions</h3>
+	<br>
+	</div>
+	<table class="table table-striped">
+			<thead class="thead-dark">
 				<tr>
 					<th width="10%">Name of Package</th>
 					<th width="10%">Rental Date</th>
@@ -86,6 +56,11 @@
 					</tr>';
 					$no++;
 			}?>
-		    
+	<footer>
+        <span>© Copyright 2018 Audirentur</span>
+    </footer>
+	<!--JAVASCRIPT-->
+    <script src="http://customer.audirentur.com/js/jquery-3.3.1.js"></script>
+    <script src="http://customer.audirentur.com/js/bootstrap.min.js"></script>
 	</body>	
 	</html>
