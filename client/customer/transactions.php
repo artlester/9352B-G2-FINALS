@@ -1,18 +1,6 @@
 <?php
 	require('db.php');
 	require('session.php');
-	
-	$query = "SELECT rentals.rental_id, rentals.rental_date, rentals.return_date, rentals.status, sounds.name 
-				FROM ((customers INNER JOIN rentals on customers.customer_id=rentals.customer_id) 
-				INNER JOIN sounds on rentals.sound_id=sounds.sound_id)
-				WHERE customers.cust_username= '$user' "; 
-
-	//database			
-	$result = mysqli_query($mysqli, $query);
-
-	if(!$result ) {
-				die('Could not display data: ' . mysql_error()); //display errors 
-	}
 ?> 
 <!DOCTYPE html>
 <html>
@@ -35,18 +23,31 @@
 	<h3 class="text-center">Transactions</h3>
 	<br>
 	</div>
+	<br>
+	<?php
+	$query = "SELECT rentals.rental_id, rentals.rental_date, rentals.return_date, rentals.status, sounds.name 
+				FROM ((customers INNER JOIN rentals on customers.customer_id=rentals.customer_id) 
+				INNER JOIN sounds on rentals.sound_id=sounds.sound_id)
+				WHERE customers.cust_username= '$user' AND rentals.status= 'Pending'";
+		
+	$result = mysqli_query($mysqli, $query);
+	if(!$result ) {
+				die('Could not display data: ' . mysql_error()); //display errors 
+	}
+	?>
 	<table class="table table-striped">
+		<thead><tr style="text-align:left;background-color:gray;"><td colspan="4"><h4>Pending Rentals</h4></td></tr></thead>
 			<thead class="thead-dark">
 				<tr>
-					<th width="10%">Name of Package</th>
+					<th width="10%">Name</th>
 					<th width="10%">Rental Date</th>
 					<th width="10%">Return Date</th>
 					<th width="5%">Status</th>
 				</tr>
 			</thead>
 			<tbody>
-			<?php	//for the data will be displayed
-				$no=1;
+			<?php //for the data will be displayed
+			$no=1;
 				while ($row = mysqli_fetch_array($result)){
 				echo '<tr>
 						<td >'.$row['name'].'</td>
@@ -54,8 +55,120 @@
 						<td >'.$row['return_date'].'</td>
 						<td>'.$row['status'].'</td>
 					</tr>';
-					$no++;
-			}?>
+				$no++;
+				}
+	?>
+			</tbody>
+	</table>
+	<?php
+	$query = "SELECT rentals.rental_id, rentals.rental_date, rentals.return_date, rentals.status, sounds.name 
+				FROM ((customers INNER JOIN rentals on customers.customer_id=rentals.customer_id) 
+				INNER JOIN sounds on rentals.sound_id=sounds.sound_id)
+				WHERE customers.cust_username= '$user' AND rentals.status= 'Renting'";
+		
+	$result = mysqli_query($mysqli, $query);
+	if(!$result ) {
+				die('Could not display data: ' . mysql_error()); //display errors 
+	}
+	?>
+	<table class="table table-striped">
+		<thead><tr style="text-align:left;background-color:gray;"><td colspan="4"><h4>Renting Rentals</h4></td></tr></thead>
+			<thead class="thead-dark">
+				<tr>
+					<th width="10%">Name</th>
+					<th width="10%">Rental Date</th>
+					<th width="10%">Return Date</th>
+					<th width="5%">Status</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php
+			$no=1;
+				while ($row = mysqli_fetch_array($result)){
+				echo '<tr>
+						<td >'.$row['name'].'</td>
+						<td >'.$row['rental_date'].'</td>
+						<td >'.$row['return_date'].'</td>
+						<td>'.$row['status'].'</td>
+					</tr>';
+				$no++;
+				}
+				?>
+		    </tbody>
+		</table>
+	<br>
+	<?php
+	$query = "SELECT rentals.rental_id, rentals.rental_date, rentals.return_date, rentals.status, sounds.name 
+				FROM ((customers INNER JOIN rentals on customers.customer_id=rentals.customer_id) 
+				INNER JOIN sounds on rentals.sound_id=sounds.sound_id)
+				WHERE customers.cust_username= '$user' AND rentals.status= 'Cancelled'";
+		
+	$result = mysqli_query($mysqli, $query);
+	if(!$result ) {
+				die('Could not display data: ' . mysql_error()); //display errors 
+	}
+	?>
+	<table class="table table-striped">
+	<thead><tr style="text-align:left;background-color:gray;"><td colspan="4"><h4>Cancelled Rentals</h4></td></tr></thead>
+			<thead class="thead-dark">
+				<tr>
+					<th width="10%">Name</th>
+					<th width="10%">Rental Date</th>
+					<th width="10%">Return Date</th>
+					<th width="5%">Status</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php
+			$no=1;
+				while ($row = mysqli_fetch_array($result)){
+				echo '<tr>
+						<td >'.$row['name'].'</td>
+						<td >'.$row['rental_date'].'</td>
+						<td >'.$row['return_date'].'</td>
+						<td>'.$row['status'].'</td>
+					</tr>';
+				$no++;
+				}
+				?>
+				 </tbody>
+			</table>
+	<?php
+	$query = "SELECT rentals.rental_id, rentals.rental_date, rentals.return_date, rentals.status, sounds.name 
+				FROM ((customers INNER JOIN rentals on customers.customer_id=rentals.customer_id) 
+				INNER JOIN sounds on rentals.sound_id=sounds.sound_id)
+				WHERE customers.cust_username= '$user' AND rentals.status= 'Rented'";
+		
+	$result = mysqli_query($mysqli, $query);
+	if(!$result ) {
+				die('Could not display data: ' . mysql_error()); //display errors 
+	}
+	?>
+	<table class="table table-striped">
+	<thead><tr style="text-align:left;background-color:gray;"><td colspan="4"><h4>Rented Rentals</h4></td></tr></thead>
+			<thead class="thead-dark">
+				<tr>
+					<th width="10%">Name</th>
+					<th width="10%">Rental Date</th>
+					<th width="10%">Return Date</th>
+					<th width="5%">Status</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php
+			$no=1;
+				while ($row = mysqli_fetch_array($result)){
+				echo '<tr>
+						<td >'.$row['name'].'</td>
+						<td >'.$row['rental_date'].'</td>
+						<td >'.$row['return_date'].'</td>
+						<td>'.$row['status'].'</td>
+					</tr>';
+				$no++;
+				}
+				?>
+		    </tbody>
+			</table>
 	<footer>
         <span>© Copyright 2018 Audirentur</span>
     </footer>
