@@ -1,0 +1,44 @@
+<!-- % include ../../partials/header %-->
+<!--% include ../../partials/sidenav %-->
+<div class="container" style="width:100%; margin:0; padding:0;" >
+	<div class="row" style="width:80%; float:right; margin:0; padding:0;">
+		<div class="col-sm-12">
+			<% if(tuples[0] == undefined){%>
+				<h2>No one has attemped to rent from you yet!</h2>
+			<%} else{%>
+			<table class="table whiteBG">
+				<thead>
+					<tr>
+						<th>Rental ID</th>
+						<th>Rental Date</th>
+						<th>Return Date</th>
+						<th class="name">Username</th>
+						<th class="description">Last Name</th>
+						<th class="price">First Name</th>
+						<th class="status">Item</th>
+						<th class="actions text-center">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% tuples.forEach(function(tuples) { %>
+						<tr>
+							<td><%= tuples.rental_id %></td>
+							<td><%= tuples.rental_date %></td>
+							<td><%= tuples.renturn_date %></td>
+							<td><%= tuples.cust_username %></td>
+							<td><%= tuples.cust_last_name %></td>
+							<td><%= tuples.cust_first_name %></td>
+							<td><%= tuples.name %></td>
+							<td class="text-center">
+								<a href="/accept_request/<%= req.rental_id %>" class="btn btn-sm btn-success">Accept</a>
+								<a href="/deny_request/<%= req.rental_id %>" class="btn btn-sm btn-danger">Deny</a>
+							</td>
+						</tr>
+					<%});%>
+				</tbody>
+			</table>
+			<%}%>
+		</div>
+	</div>
+</div>
+<!--% include ../../partials/footer %-->

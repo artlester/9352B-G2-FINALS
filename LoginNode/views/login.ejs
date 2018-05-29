@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css"></head>
+<body><% if (concern != ''){ %>
+	<h2><%= concern %></h2>
+	<% } %>
+	<form class="modal-content animate" action="/login" method="post">
+    <div class="container">
+        <h3>Username</h3>
+        <input type="text" placeholder="Enter Username" name="username" required>
+        <h3>Password</h3>
+        <input type="password" placeholder="Enter Password" name="password" required>
+        <input type="submit" value="Login">
+    </div>
+</form></body>
+</html>
